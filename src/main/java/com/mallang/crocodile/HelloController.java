@@ -15,4 +15,9 @@ public class HelloController {
 			.data("hello")
 			.build();
 	}
+
+	@GetMapping("/hello/error")
+	public ApiResponse<String> helloError() throws Exception {
+		throw new Exception("임시로 만든 에러");
+	}
 }
