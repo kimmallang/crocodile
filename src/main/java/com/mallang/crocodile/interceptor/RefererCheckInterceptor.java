@@ -19,13 +19,13 @@ public class RefererCheckInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-		if(!isAllowedDomain(request)) {
+		if(!isAllowedReferer(request)) {
 			throw new NotAllowedRefererException(request.getHeader("referer"));
 		}
 		return true;
 	}
 
-	private boolean isAllowedDomain(HttpServletRequest request) {
+	private boolean isAllowedReferer(HttpServletRequest request) {
 		final List<String> allowedReferers = crocodileConfig.getAllowedReferers();
 		if (CollectionUtils.isEmpty(allowedReferers)) {
 			return true;

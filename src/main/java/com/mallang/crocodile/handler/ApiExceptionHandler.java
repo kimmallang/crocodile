@@ -3,6 +3,7 @@ package com.mallang.crocodile.handler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.mallang.crocodile.exception.NotAllowedRefererException;
 import com.mallang.crocodile.presentation.ApiResponse;
@@ -25,10 +26,21 @@ public class ApiExceptionHandler {
 
 	@ExceptionHandler(NotAllowedRefererException.class)
 	public ResponseEntity<Object> handleNotAllowedReferer(Exception e) {
-		log.error("[FORBIDDEN] {}", e.getMessage(), e);
+		log.warn("[FORBIDDEN] {}", e.getMessage());
 
 		final ApiResponse<Object> apiResponse = ApiResponse.builder()
 			.status(ApiResponseStatus.FORBIDDEN)
+			.build();
+
+		return new ResponseEntity<>(apiResponse, apiResponse.getHttpStatus());
+	}
+
+	@ExceptionHandler(NoHandlerFoundException.class)
+	public ResponseEntity<Object> handleNoHandlerFound(Exception e) {
+		log.warn("[NOT_FOUND] {}", e.getMessage());
+
+		final ApiResponse<Object> apiResponse = ApiResponse.builder()
+			.status(ApiResponseStatus.NOT_FOUND)
 			.build();
 
 		return new ResponseEntity<>(apiResponse, apiResponse.getHttpStatus());
