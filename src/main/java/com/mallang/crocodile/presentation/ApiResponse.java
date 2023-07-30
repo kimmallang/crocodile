@@ -1,5 +1,8 @@
 package com.mallang.crocodile.presentation;
 
+import org.springframework.http.HttpStatus;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -12,5 +15,10 @@ public class ApiResponse<T> {
 
 	public String getMessage() {
 		return status.getMessage();
+	}
+
+	@JsonIgnore
+	public HttpStatus getHttpStatus() {
+		return status.getHttpStatus();
 	}
 }
