@@ -31,7 +31,7 @@ public class RefererCheckInterceptor implements HandlerInterceptor {
 			return true;
 		}
 
-		final String referer = request.getHeader("Referer");
+		final String referer = request.getHeader("referer");
 		if (!StringUtils.hasText(referer)) {
 			return false;
 		}
