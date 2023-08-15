@@ -1,9 +1,12 @@
 package com.mallang.crocodile;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mallang.crocodile.infrastructure.HelloRepository;
+import com.mallang.crocodile.domain.Hello;
+import com.mallang.crocodile.infrastructure.HelloMapper;
 import com.mallang.crocodile.presentation.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,13 +15,12 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequiredArgsConstructor
 public class HelloController {
-	private final HelloRepository helloRepository;
+	private final HelloMapper helloMapper;
 
 	@GetMapping("/hello")
-	public ApiResponse<String> hello() {
-		Integer count = helloRepository.countAll();
-		return ApiResponse.<String>builder()
-			.data(String.valueOf(count))
+	public ApiResponse<List<Hello>> hello() {
+		return ApiResponse.<List<Hello>>builder()
+			.data(helloMapper.findAll())
 			.build();
 	}
 
