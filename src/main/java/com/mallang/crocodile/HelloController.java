@@ -3,16 +3,22 @@ package com.mallang.crocodile;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mallang.crocodile.infrastructure.HelloRepository;
 import com.mallang.crocodile.presentation.ApiResponse;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 public class HelloController {
+	private final HelloRepository helloRepository;
+
 	@GetMapping("/hello")
 	public ApiResponse<String> hello() {
+		Integer count = helloRepository.countAll();
 		return ApiResponse.<String>builder()
-			.data("hello")
+			.data(String.valueOf(count))
 			.build();
 	}
 
