@@ -1,9 +1,6 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://containers-us-west-36.railway.app:5929/railway?characterEncoding=utf8
-    username: root
-    password: VrsQIfCatI5o6g0qb30S
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
