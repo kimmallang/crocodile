@@ -3,6 +3,8 @@ package com.mallang.crocodile.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.fasterxml.classmate.TypeResolver;
+import com.mallang.crocodile.presentation.ApiResponse;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -16,8 +18,11 @@ public class SwaggerConfig {
 	 * Docket 을 이용해서 스웨거에 대한 설정을 관리할 수 있습니다.
 	 */
 	@Bean
-	public Docket api() {
+	public Docket api(TypeResolver typeResolver) {
 		return new Docket(DocumentationType.OAS_30)
+			.additionalModels(
+				typeResolver.resolve(ApiResponse.class)
+			)
 			.useDefaultResponseMessages(false)
 			.select()
 			.apis(RequestHandlerSelectors.basePackage("com.mallang.crocodile"))
