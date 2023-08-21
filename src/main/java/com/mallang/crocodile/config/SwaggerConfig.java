@@ -25,7 +25,7 @@ public class SwaggerConfig {
 			)
 			.useDefaultResponseMessages(false)
 			.select()
-			.apis(RequestHandlerSelectors.basePackage("com.mallang.crocodile"))
+			.apis(RequestHandlerSelectors.basePackage("com.mallang.crocodile.presentation"))
 			.paths(PathSelectors.any())
 			.build()
 			.apiInfo(new ApiInfoBuilder()

@@ -22,9 +22,6 @@ public class IssueListView {
 	@Schema(description = "요청 페이지 크기")
 	private final Integer pageSize;
 
-	@Schema(description = "총 페이지 수")
-	private final Integer totalPage;
-
 	@Schema(description = "총 이슈 수")
 	private final Integer totalCount;
 

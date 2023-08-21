@@ -55,7 +55,6 @@ public class IssueController {
 				.cursor(cursor)
 				.nextCursor(0L)
 				.pageSize(pageSize)
-				.totalPage(10)
 				.totalCount(200)
 				.issues(issueViews)
 				.build())
